@@ -1,7 +1,7 @@
 <div class="min-h-screen bg-background p-4">
   <div class="max-w-3xl mx-auto space-y-6">
     <div class="flex justify-between items-center">
-      <h1 class="text-3xl font-bold text-text-primary">Menú Seleccionado</h1>
+      <h1 class="text-3xl font-bold text-text-primary">Buscador de menú</h1>
       <button
         (click)="gotTohome()"
         class="bg-accent hover:bg-green-700 text-white px-4 py-2 rounded-md"
@@ -9,7 +9,7 @@
         Menú
       </button>
     </div>
- 
+
     <!-- Campo de búsqueda -->
     <input
       type="text"
@@ -24,14 +24,14 @@
     @if (results().length > 0) {
       <div class="mt-4">
         <p class="text-sm text-text-light">Resultados: {{ results().length }}</p>
-  
+
         <div class="grid md:grid-cols-2 gap-6">
           @for (dish of results(); track dish.id) {
             <app-dish [dish]="dish" [inSearch]="true" (add)="addToMenu(dish)" [menu]="menu()" [menuStats]="menuStats()"></app-dish>
           }
         </div>
       </div>
-    } 
+    }
     @if (results().length === 0 && searchControl.value) {
       <div class="text-text-light">
         No se encontraron resultados.
