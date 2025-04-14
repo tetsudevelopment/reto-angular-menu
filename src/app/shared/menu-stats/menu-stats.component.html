@@ -1,0 +1,35 @@
+<div class="bg-surface rounded-lg shadow-md p-6 space-y-4">
+  <h2 class="text-xl font-semibold text-text-primary">📊 Estadísticas del Menú</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-text-primary">
+    <div class="flex justify-between">
+      <span>🍽️ Platos totales:</span>
+      <span class="font-medium">{{ stats().dishes }}</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span>🌱 Platos veganos:</span>
+      <span class="font-medium">{{ stats().vegan }}</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span>🥩 No veganos:</span>
+      <span class="font-medium">{{ stats().nonVegan }}</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span>💰 Precio total:</span>
+      <span class="font-medium">$ {{ stats().pricePerServing.toFixed(2) }}</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span>🕒 Tiempo promedio:</span>
+      <span class="font-medium">{{ stats().readyInMinutes }} min</span>
+    </div>
+
+    <div class="flex justify-between">
+      <span>🩺 Promedio de Health Score:</span>
+      <span class="font-medium">{{ stats().healthScore }}/100</span>
+    </div>
+  </div>
+</div>

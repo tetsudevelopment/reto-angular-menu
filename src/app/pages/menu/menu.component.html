@@ -1,0 +1,28 @@
+<div class="min-h-screen bg-background p-4">
+  <div class="max-w-5xl mx-auto space-y-8">
+
+    <div class="flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-text-primary">Menú Seleccionado</h1>
+      <button
+        (click)="goToAddDish()"
+        class="bg-accent hover:bg-green-700 text-white px-4 py-2 rounded-md"
+      >
+        ➕ Agregar
+      </button>
+    </div>
+
+    <app-menu-stats [stats]="menuStats()"></app-menu-stats>
+
+    @if (!menu().length) {
+      <div class="text-center text-text-light text-lg mt-20">
+        No hay platos en el menú. ¡Agrega el primero! 🍽️
+      </div>
+    } @else {
+      <div class="grid md:grid-cols-2 gap-6 mt-4">
+        @for (dish of menu(); track dish.id) {
+          <app-dish [dish]="dish" (remove)="removeDish(dish.id)" [menu]="menu()" [menuStats]="menuStats()"></app-dish>
+        }
+      </div>
+    }
+  </div>
+</div>

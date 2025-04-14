@@ -1,0 +1,83 @@
+<div class="min-h-screen flex items-center justify-center bg-background p-4">
+  <div class="w-full max-w-sm bg-surface rounded-xl shadow-md p-6 space-y-6">
+    <h2 class="text-2xl font-bold text-center text-text-primary">Iniciar sesión</h2>
+
+    <form [formGroup]="loginForm()" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <label
+          for="email"
+          [ngClass]="{
+            'block text-sm font-medium': true,
+            'text-primary': this.email()?.invalid && this.email()?.touched,
+            'text-text-primary': !this.email()?.invalid && this.email()?.touched
+          }"
+        >Correo electrónico</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          [ngClass]="{
+            'mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2': true,
+            'border-primary': this.email()?.invalid && this.email()?.touched,
+          }"
+        />
+        @if (this.email()?.invalid && this.email()?.touched) {
+          <p class="text-sm text-red-600 mt-1">
+            @if (email()?.errors?.['required']) {
+              <span>El correo es obligatorio.</span>
+            }
+            @if (email()?.errors?.['email']) {
+              <span>El correo no es válido.</span>
+            }
+          </p>
+        }
+      </div>
+      <div>
+        <label for="password"
+          [ngClass]="{
+            'block text-sm font-medium': true,
+            'text-primary': this.password()?.invalid && this.password()?.touched,
+            'text-text-primary': !this.password()?.invalid && this.password()?.touched
+          }"
+        >Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          autocomplete="current-password"
+          [ngClass]="{
+            'mt-1 w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2': true,
+            'border-primary': this.password()?.invalid && this.password()?.touched,
+          }"
+        />
+        @if (this.password()?.invalid && this.password()?.touched) {
+          <p class="text-sm text-red-600 mt-1">
+            @if (password()?.errors?.['required']) {
+              <span>La contraseña es obligatoria.</span>
+            }
+          </p>
+        }
+      </div>
+      <div>
+        <button
+          type="submit"
+          [ngClass]="{
+            'w-full text-white font-semibold py-2 px-4 rounded-md transition duration-200': true,
+            'bg-primary hover:cursor-pointer hover:bg-red-700': !loginForm().invalid,
+            'bg-red-200': loginForm().invalid
+          }"
+          [disabled]="loginForm().invalid"
+        >
+          @if (isLoading()) {
+            <div class="flex justify-center items-center">
+              <div class="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          } @else {
+            <span>Iniciar sesión</span>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
